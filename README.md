@@ -26,3 +26,6 @@ Then use vite's [preview](https://vitejs.dev/guide/cli.html#vite-preview) featur
 ```
 npm run preview
 ```
+
+## About the implementation
+I'm aware of libraries such as  or [Formik](https://formik.org/) and [yup](https://github.com/jquense/yup) to handle form validation. Actually in my last school project I used [Reac Hook Form](https://react-hook-form.com/) and [zod](https://zod.dev/) for managing my forms. But in this assignment, I wanted to use as much vanilla TypeScript as possible (still getting practice with it).

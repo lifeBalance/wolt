@@ -1,4 +1,11 @@
 import React from 'react'
+import { HandRaisedIcon } from '@heroicons/react/24/outline'
+
+type errorType = { value: boolean, message: string }
+
+interface errorsInterface {
+  [key: string]: errorType
+}
 
 type Props = {
   label: string
@@ -7,7 +14,10 @@ type Props = {
   placeholder: string
   value: string | number
   unit?: string
+  min?: string | number
   changeHandler: React.ChangeEventHandler<HTMLInputElement>
+  isRequired: boolean,
+  errors?: errorsInterface
 }
 
 function Input(props: Props) {
@@ -17,7 +27,7 @@ function Input(props: Props) {
         {props.label}
       </label>
 
-      <div className='flex items-center space-x-2 md:col-span-2'>
+      <div className='flex items-center space-x-2 md:col-span-2 relative pb-12'>
         <input
           id={props.id}
           type={props.type}
@@ -25,8 +35,15 @@ function Input(props: Props) {
           placeholder={props.placeholder}
           value={props.value}
           onChange={props.changeHandler}
+          min={props.min}
+          required={props.isRequired}
         />
         <span className='text-white text-xl'>{props.unit}</span>
+        {props.errors && props.errors[props.id].value &&
+          <p className='absolute top-12 right-2 text-white text-sm'>
+            <HandRaisedIcon className='inline w-4 -mt-1 mx-2' />
+            {`${props.errors[props.id].message}`}
+          </p>}
       </div>
     </div>
   )
