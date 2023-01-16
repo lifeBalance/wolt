@@ -10,8 +10,47 @@ function Calculator() {
 
   function calculatePrice(e: React.FormEvent<HTMLInputElement>) {
     e.preventDefault()
-    // Do calculations here
-    setPrice(2) // hardcoded price for testing
+    let orderValue: number = Number(cartValue)
+    let distance: number = Number(deliveryDistance)
+    let items: number = Number(amountItems)
+    let orderTime: Date = new Date(time)
+
+    // Free delivery for 100 bucks orders (or greater).
+    if (orderValue >= 100) {
+      return setPrice(0)
+    }
+
+    // If the cart value is less than 10€, add "cheapskate" surcharge.
+    let cheapskateFee: number = (orderValue < 10) ? 10 - orderValue : 0
+    
+    let distanceFee: number = 0
+    // Distance: 2eu for first km, plus 1eu for each additional 500m (or fraction)
+    if (distance >= 1000) {
+      distanceFee += 2 // Add 2eu for the first km
+      distance -= 1000 // Subtract the 1st km from the distance
+      /* If after subtracting the first km, we have a positive number,
+        add 1eu per additional 500m. */
+      distanceFee += (distance > 0) ? Math.ceil(distance / 500) : 0
+    }
+
+    // Fees for amount of items
+    let itemsFee: number = 0
+    if (items >= 5) {
+      itemsFee += (items - 4) * 0.50    // add 50 cents per item over 5
+      itemsFee += items > 12 ? 1.2 : 0  // at 1.2 eu in case of extra bulk
+    }
+    
+    // Fees for date/time of the order
+    const weekDay: string = orderTime.toLocaleDateString('en-FI', { weekday: 'long' })
+    const hour: number = orderTime.getHours()
+    // console.log(weekDay , hour) // testing
+    let timeFee: boolean
+    timeFee = (weekDay === 'Friday' && hour >= 15 && hour <= 19) ? true : false
+
+    let total: number = orderValue + cheapskateFee + distanceFee + itemsFee
+    if (timeFee) total *= 1.2 // apply the time fee if necessary
+
+    setPrice(Math.min(total, 15))
   }
 
   return (
@@ -49,7 +88,7 @@ function Calculator() {
         <Input
           label='time'
           id='time'
-          type='date'
+          type='datetime-local'
           placeholder='Enter date'
           value={time}
           changeHandler={(e) => setTime(e.target.value)}
@@ -62,10 +101,11 @@ function Calculator() {
       <p className='text-white text-xl'>
         Delivery price:
         <span className='ml-2'>
-          {price} <span>&euro;</span>
+          {price.toFixed(2)} <span>&euro;</span>
         </span>
       </p>
     </div>
   )
 }
+
 export default Calculator
