@@ -17,7 +17,12 @@ You can start the [development server](https://vitejs.dev/guide/cli.html#dev-ser
 npm run dev
 ```
 
-Or if you prefer, you can use vite's [preview](https://vitejs.dev/guide/cli.html#vite-preview) feature, which basically **builds** the project, and starts a local server with the React bundled app:
+Or if you prefer, you can [build](https://vitejs.dev/guide/cli.html#build) the project:
+```
+npm run build
+```
+
+Then use vite's [preview](https://vitejs.dev/guide/cli.html#vite-preview) feature, which basically **builds** the project, and starts a local server with the React bundled app:
 ```
 npm run preview
 ```
