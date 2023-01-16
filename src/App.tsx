@@ -1,12 +1,11 @@
-import reactLogo from './assets/react.svg'
+import woltLogo from './assets/wolt.png'
 import './App.css'
 
 function App() {
   return (
-    <div>
-      <h1>
-        Hello, Wolt <img src={reactLogo} alt="" width='30px' />
-      </h1>
+    <div className='flex justify-center items-center min-h-screen bg-slate-700'>
+      <h1 className='text-white text-2xl'>Hello,</h1>
+      <img src={woltLogo} alt="" className='inline w-14 ml-2'/>
     </div>
   )
 }
