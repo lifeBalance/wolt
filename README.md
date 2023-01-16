@@ -1,15 +1,15 @@
-# Wolt's SOFTWARE ENGINEERING INTERNSHIP, SUMMER 2023
-This is the **home assignment** for the [software engineering internship](https://careers.wolt.com/en/jobs/software-engineering-intern-summer-2023/26c3bff#apply-now).
+# Wolt's Front-End Assignment
+This is the **front-end** assignment for the [software engineering 2023](https://careers.wolt.com/en/jobs/software-engineering-intern-summer-2023/26c3bff#apply-now).
 
-Dependencies:
-
-* [Vite](https://vitejs.dev/)
+> Check the instructions [here](./README/front-end.md)
 
 ## Installing Project Dependencies
 It's enough with running:
 ```
 npm i
 ```
+
+> I use [Vite](https://vitejs.dev/) to build and serve the app locally:
 
 ## Serving
 You can start the [development server](https://vitejs.dev/guide/cli.html#dev-server) with:
