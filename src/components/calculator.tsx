@@ -8,7 +8,7 @@ function Calculator() {
   const [time, setTime] = React.useState('')
   const [price, setPrice] = React.useState(0)
 
-  function calculatePrice(e: React.FormEvent<HTMLInputElement>) {
+  function calculatePrice(e: React.SyntheticEvent) {
     e.preventDefault()
     let orderValue: number = Number(cartValue)
     let distance: number = Number(deliveryDistance)
